@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.graphql.ConditionalOnGraphQlSchema;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -49,6 +50,7 @@ public class PredictableController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<Predictable> createPredictions(@RequestBody List<Predictable> predictable) {
         System.out.println("Req:"+ predictable);
         return predictableService.createNewPredictions(predictable);
@@ -56,6 +58,7 @@ public class PredictableController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<Predictable> updatePredictionsResults(@RequestBody List<Predictable> predictabless){
         String requestBodyString = predictabless.toString();
         logger.info("Incoming Request Body: {}", requestBodyString);

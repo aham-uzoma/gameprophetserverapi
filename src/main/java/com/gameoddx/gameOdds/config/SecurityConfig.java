@@ -35,7 +35,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests( auth ->{
-                    auth.requestMatchers("api/v1/predict/","api/v1/predict/grouped-by-timestamp").permitAll();
+//                    auth.requestMatchers("/").permitAll();
+//                    auth.requestMatchers("api/v1/predict/","api/v1/predict/grouped-by-timestamp").permitAll();
+                    auth.requestMatchers("api/v1/predict/").permitAll();
                     auth.anyRequest().authenticated();
                 }).oauth2Login(withDefaults())
                 .oauth2Login(oath2->{

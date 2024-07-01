@@ -15,15 +15,25 @@ public class User {
 
     private String _id;
 
-    private String username;
+    private String name;
 
     private String password;
 
     private String email;
 
-    public User(String _id, String username, String email){
+    private UserRole role;
+
+    private RegistrationSource registrationSource;
+
+    private Date timeStamp;
+
+
+    public User(String _id, String name, String email, UserRole role, RegistrationSource registrationSource,Date timeStamp){
         this._id = _id;
-        this.username = username;
+        this.name = name;
         this.email = email;
+        this.role = role;
+        this.registrationSource=registrationSource;
+        this.timeStamp= timeStamp;
     }
 }
